@@ -1,118 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestión del Diseño de Emprendimientos</title>
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f6f9;
-    line-height: 1.6;
-}
-
-header {
-    background: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-section {
-    padding: 20px;
-    margin: 15px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-button {
-    background: #27ae60;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background: #219150;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>Gestión del Diseño de Emprendimientos</h1>
-<h2>Administración del Planeamiento Económico</h2>
-<button onclick="leerTexto()">🔊 Escuchar contenido</button>
-</header>
-
-<section id="contenido">
-<p><strong>1. ¿Qué es el planeamiento económico?</strong><br>
-Es el proceso mediante el cual se organizan y proyectan los aspectos económicos de un emprendimiento antes de iniciarlo.
-Sirve para reducir riesgos, tomar decisiones informadas y asegurar la sostenibilidad.</p>
-
-<p><strong>2. Diagnóstico económico inicial</strong><br>
-Permite conocer qué se produce en el territorio, qué falta producir, necesidades de la comunidad y recursos disponibles.</p>
-
-<p><strong>3. Definición de objetivos económicos</strong><br>
-Deben ser claros, realistas y medibles.</p>
-
-<p><strong>4. Identificación y cálculo de costos</strong><br>
-Costos fijos, variables y mixtos permiten definir el precio de venta.</p>
-
-<p><strong>5. Inversión inicial</strong><br>
-Incluye herramientas, insumos, equipamiento y trámites necesarios.</p>
-
-<p><strong>6. Fuentes de financiamiento</strong><br>
-Fondos comunitarios, cooperativas, microcréditos y aportes propios.</p>
-
-<p><strong>7. Proyección de ingresos</strong><br>
-Se estima cantidad de ventas, ingresos y punto de equilibrio.</p>
-
-<p><strong>8. Evaluación de riesgos</strong><br>
-Se analizan posibles dificultades y estrategias para sostener el emprendimiento.</p>
-</section>
-
-<script>
-function leerTexto() {
-    const texto = document.getElementById("contenido").innerText;
-    const mensaje = new SpeechSynthesisUtterance(texto);
-    mensaje.lang = "es-ES";
-    mensaje.rate = 1;
-    mensaje.pitch = 1;
-
-    const voces = speechSynthesis.getVoices();
-    const vozEspanol = voces.find(voz => voz.lang.includes("es"));
-
-    if (vozEspanol) {
-        mensaje.voice = vozEspanol;
-    }
-
-    speechSynthesis.speak(mensaje);
-}
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión del Diseño de Emprendimientos</title>
     <style>
         :root {
-            --primary-color: #2e7d32; /* Verde económico/financiero */
+            --primary-color: #2e7d32;
             --bg-color: #f4f6f7;
             --text-color: #333;
             --card-bg: #ffffff;
+            --accent-color: #1b5e20;
         }
 
         body {
@@ -179,7 +77,6 @@ function leerTexto() {
             margin-bottom: 0;
         }
 
-        /* Estilo responsivo para listas cortas dentro de las tarjetas */
         .card-list {
             margin: 10px 0 0 0;
             padding-left: 20px;
@@ -188,6 +85,68 @@ function leerTexto() {
 
         .card-list li {
             margin-bottom: 5px;
+        }
+
+        .calculator-box {
+            background-color: #edf7ed;
+            border: 2px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .calculator-box h4 {
+            margin: 0 0 15px 0;
+            color: #1b5e20;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .input-group input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .calc-btn {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .calc-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        .result-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 4px;
+            border-left: 5px solid #2e7d32;
+            font-weight: bold;
+            display: none;
         }
     </style>
 </head>
@@ -200,25 +159,21 @@ function leerTexto() {
         </header>
 
         <main>
-            <!-- 1. ¿Qué es el planeamiento económico? -->
             <section class="card">
                 <h3>1. ¿Qué es el planeamiento económico?</h3>
                 <p>Es el proceso mediante el cual se organizan y proyectan los aspectos económicos de un emprendimiento antes de iniciarlo. Sirve para reducir riesgos, tomar decisiones informadas y asegurar la sostenibilidad.</p>
             </section>
 
-            <!-- 2. Diagnóstico económico inicial -->
             <section class="card">
                 <h3>2. Diagnóstico económico inicial</h3>
                 <p>Permite conocer qué se produce en el territorio, qué falta producir, las necesidades de la comunidad y los recursos disponibles.</p>
             </section>
 
-            <!-- 3. Definición de objetivos económicos -->
             <section class="card">
                 <h3>3. Definición de objetivos económicos</h3>
                 <p>Los objetivos financieros y comerciales del proyecto deben ser siempre claros, realistas y medibles.</p>
             </section>
 
-            <!-- 4. Identificación y cálculo de costos -->
             <section class="card">
                 <h3>4. Identificación y cálculo de costos</h3>
                 <p>Consiste en clasificar y calcular con precisión los gastos del negocio para poder definir correctamente el precio de venta final:</p>
@@ -229,7 +184,6 @@ function leerTexto() {
                 </ul>
             </section>
 
-            <!-- 5. Inversión inicial -->
             <section class="card">
                 <h3>5. Inversión inicial</h3>
                 <p>Incluye todo lo necesario para arrancar el proyecto de forma legal y operativa:</p>
@@ -240,7 +194,6 @@ function leerTexto() {
                 </ul>
             </section>
 
-            <!-- 6. Fuentes de financiamiento -->
             <section class="card">
                 <h3>6. Fuentes de financiamiento</h3>
                 <p>Identificar de dónde provendrán los recursos económicos para iniciar. Las opciones habituales son:</p>
@@ -251,13 +204,34 @@ function leerTexto() {
                 </ul>
             </section>
 
-            <!-- 7. Proyección de ingresos -->
             <section class="card">
                 <h3>7. Proyección de ingresos</h3>
                 <p>Se calcula un estimado de la cantidad futura de ventas, los ingresos esperados y se define el <strong>punto de equilibrio</strong> (el momento donde no hay pérdidas ni ganancias).</p>
+                
+                <div class="calculator-box">
+                    <h4>Simulador: Punto de Equilibrio</h4>
+                    
+                    <div class="input-group">
+                        <label for="costosFijos">Costos Fijos Totales ($):</label>
+                        <input type="number" id="costosFijos" placeholder="Ej: 5000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="precioVenta">Precio de Venta por Unidad ($):</label>
+                        <input type="number" id="precioVenta" placeholder="Ej: 50">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="costoVariable">Costo Variable por Unidad ($):</label>
+                        <input type="number" id="costoVariable" placeholder="Ej: 20">
+                    </div>
+                    
+                    <button class="calc-btn" onclick="calcularAhora()">Calcular Unidades</button>
+                    
+                    <div id="resultadoPE" class="result-box"></div>
+                </div>
             </section>
 
-            <!-- 8. Evaluación de riesgos -->
             <section class="card">
                 <h3>8. Evaluación de riesgos</h3>
                 <p>Se analizan de forma anticipada las posibles dificultades del mercado y se diseñan estrategias comerciales para sostener el emprendimiento a largo plazo.</p>
@@ -265,6 +239,42 @@ function leerTexto() {
         </main>
     </div>
 
+    <script>
+        function calcularAhora() {
+            var campoCF = document.getElementById('costosFijos');
+            var campoPV = document.getElementById('precioVenta');
+            var campoCV = document.getElementById('costoVariable');
+            var contenedorResultado = document.getElementById('resultadoPE');
+
+            var cf = parseFloat(campoCF.value);
+            var pv = parseFloat(campoPV.value);
+            var cv = parseFloat(campoCV.value);
+
+            if (isNaN(cf) || isNaN(pv) || isNaN(cv) || cf < 0 || pv < 0 || cv < 0) {
+                contenedorResultado.style.display = 'block';
+                contenedorResultado.style.borderLeftColor = '#d32f2f';
+                contenedorResultado.style.backgroundColor = '#ffebee';
+                contenedorResultado.innerHTML = '<span style="color: #d32f2f;">Error: Ingresa números válidos y positivos.</span>';
+                return;
+            }
+
+            if (pv <= cv) {
+                contenedorResultado.style.display = 'block';
+                contenedorResultado.style.borderLeftColor = '#d32f2f';
+                contenedorResultado.style.backgroundColor = '#ffebee';
+                contenedorResultado.innerHTML = '<span style="color: #d32f2f;">Error: El precio debe ser mayor que el costo variable.</span>';
+                return;
+            }
+
+            var operacion = cf / (pv - cv);
+            var resultadoFinal = Math.ceil(operacion);
+
+            contenedorResultado.style.display = 'block';
+            contenedorResultado.style.borderLeftColor = '#2e7d32';
+            contenedorResultado.style.backgroundColor = '#ffffff';
+            contenedorResultado.innerHTML = '¡Resultado!<br>Debes vender <span style="color: #2e7d32; font-size: 1.15rem;">' + resultadoFinal + ' unidades</span> para no ganar ni perder.';
+        }
+    </script>
+
 </body>
 </html>
-
